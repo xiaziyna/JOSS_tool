@@ -1,0 +1,28 @@
+FROM ballantyne/python:2.1
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install git
+RUN apt-get update && apt-get install -y --no-install-recommends git \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install testing dependencies
+# RUN easy_install pytest pytest-cov
+
+# # Set up working directory
+# WORKDIR /review
+
+# # Require PACKAGE_REPO at build time
+# ARG PACKAGE_REPO
+# RUN test -n "$PACKAGE_REPO" || (echo "ERROR: PACKAGE_REPO build arg is required" && false)
+
+# # Clone repository
+# RUN git clone ${PACKAGE_REPO} /review/submission
+
+# # Install the package
+# RUN pip install paat
+
+# # Simple entrypoint
+# CMD cd /review/submission && python -m pytest
