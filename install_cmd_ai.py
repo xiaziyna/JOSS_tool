@@ -23,7 +23,10 @@ def extract_install_commands(readme_content):
     
     # Initialize Anthropic client
     client = Anthropic(api_key=api_key)
-    prompt = f"""This is a README for a software package. Find the programming language the package is written in. Find the installation instructions. If there are multiple options, and one of the options is to pip install or use a packa>
+    prompt = f"""This is a README for a software package. Find the programming language the package is written in. Find the installation instructions. If there are multiple options, and one of the options is to pip install or use a package manager, output these. Extract terminal commands to install the package from the instructions and return these.
+    Include any additional setup steps, such as cloning the repo if the installation steps do not use a package manager, additional library dependencies or environment variables that need to be set.
+    Also output the programming language as a variable LANGUAGE and version as a variable VERSION. If no version is specified, this variable should be set to 0.
+    Do not add any text other than the programming language, version, and command line install instructions.
 
 An example output would be:
 'LANGUAGE = 'Python'
